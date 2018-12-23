@@ -1,26 +1,3 @@
-# sliver_glue.dart
-
-[![Pub](https://img.shields.io/pub/v/sliver_glue.svg)](https://pub.dartlang.org/packages/sliver_glue)
-
-Helpers for easily mixing content in a Flutter CustomScrollView, simple as ListView & GridView.
-
-## Inspiration
-
-`sliver_glue` exists mostly for mixing different kinds of content in a `CustomScrollView`. For a scrolling application, this is a possible common pattern in the **same view.**
-
-- Header widgets / AppBar
-- Grid of items
-- A list of items
-
-To use all of these in a `CustomScrollView`, using `SliverList` and `SliverGrid` have more boilerplate than using `ListView` and `GridView`.
-
-`sliver_glue` aims to help with that problem, and goes a little beyond this too (providing dismissable-ness and dividing lines, common use-cases).
-
-## Getting Started
-
-Note that to get started, the data you use must be of `GlueKeyedData`. This is so if you use features like dismissing and dividing, Flutter is able to optimize based on keyed elements.
-
-```dart
 import 'package:flutter/material.dart';
 import 'package:sliver_glue/sliver_glue.dart';
 
@@ -70,4 +47,3 @@ class MyApp extends StatelessWidget {
 }
 
 void main() => runApp(MyApp());
-```

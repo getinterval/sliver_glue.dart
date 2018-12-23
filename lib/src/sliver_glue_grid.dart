@@ -1,6 +1,6 @@
 part of sliver_glue;
 
-// Used by ScrollGlueGrid.
+// Used by SliverGlueGrid.
 const _kPadding = const EdgeInsets.all(16.0);
 const _kSpacing = 8.0;
 const _kAspectRatio = 3 / 4;
@@ -19,7 +19,7 @@ const _kCrossAxisCount = 2;
 /// Optionally, [SliverGlueGrid] can...
 /// - Wrap the entire list in [padding].
 /// - Make items dismissible via [dismissible] and [dismissibleBuilder]. If [dismissible] is true, [onDismissed] **must** be specified.
-class ScrollGlueGrid<T extends GlueKeyedData> extends StatelessWidget {
+class SliverGlueGrid<T extends GlueKeyedData> extends StatelessWidget {
   final List<T> data;
   final ScrollGlueWidgetBuilder<T> builder;
 
@@ -32,7 +32,7 @@ class ScrollGlueGrid<T extends GlueKeyedData> extends StatelessWidget {
   final VoidCallback onDismissed;
   final ScrollGlueDismissibleBuilder<T> dismissibleBuilder;
 
-  ScrollGlueGrid(
+  SliverGlueGrid(
       {Key key,
       @required this.data,
       @required this.builder,
