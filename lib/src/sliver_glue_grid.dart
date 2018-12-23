@@ -6,6 +6,19 @@ const _kSpacing = 8.0;
 const _kAspectRatio = 3 / 4;
 const _kCrossAxisCount = 2;
 
+/// A sliver that shows 2D list of widgets.
+/// 
+/// This works very similar to [GridView.builder], and is a wrapper
+/// around [SliverGrid], [SliverGridDelegateWithFixedCrossAxisCount],
+/// and [SliverChildBuilderDelegate].
+/// 
+/// [data] and [builder] must be specified for the list.
+/// 
+/// Options specified are similar to [GridView.count].
+/// 
+/// Optionally, [SliverGlueGrid] can...
+/// - Wrap the entire list in [padding].
+/// - Make items dismissible via [dismissible] and [dismissibleBuilder]. If [dismissible] is true, [onDismissed] **must** be specified.
 class ScrollGlueGrid<T extends GlueKeyedData> extends StatelessWidget {
   final List<T> data;
   final ScrollGlueWidgetBuilder<T> builder;

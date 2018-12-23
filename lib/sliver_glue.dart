@@ -7,6 +7,9 @@ part "src/sliver_glue_fixed_list.dart";
 part "src/sliver_glue_list.dart";
 part "src/sliver_glue_grid.dart";
 
+/// An abstract data class that has a key.
+/// 
+/// Keys should be used by [SliverGlueList#builder] and [SliverGlueGrid#builder].
 abstract class GlueKeyedData {
   String getKey();
 }

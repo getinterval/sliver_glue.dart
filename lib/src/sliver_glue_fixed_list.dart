@@ -1,5 +1,8 @@
 part of sliver_glue;
 
+/// A sliver that shows a fixed list of widgets.
+/// 
+/// Optionally, [SliverGlueFixedList] can wrap the widgets in [padding].
 class SliverGlueFixedList extends StatelessWidget {
   final List<Widget> widgets;
 

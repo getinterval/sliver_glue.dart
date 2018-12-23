@@ -1,5 +1,17 @@
 part of sliver_glue;
 
+/// A sliver that shows a linear list.
+/// 
+/// This works very similar to [ListView.builder], and is a wrapper
+/// around [SliverList] and [SliverChildBuilderDelegate].
+/// 
+/// [data] and [builder] must be specified for the list.
+/// 
+/// Optionally, [SliverGlueList] can...
+/// - Wrap the entire list in [padding].
+/// - Show a [header] [Widget] before the content.
+/// - Make items dismissible via [dismissible] and [dismissibleBuilder]. If [dismissible] is true, [onDismissed] **must** be specified.
+/// - Provide bottom-border dividers via [divided] and [dividerBuilder].
 class SliverGlueList<T extends GlueKeyedData> extends StatelessWidget {
   final List<T> data;
   final ScrollGlueWidgetBuilder<T> builder;
