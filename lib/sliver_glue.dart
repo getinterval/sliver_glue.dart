@@ -7,17 +7,10 @@ part "src/sliver_glue_fixed_list.dart";
 part "src/sliver_glue_list.dart";
 part "src/sliver_glue_grid.dart";
 
-/// An abstract data class that has a key.
-/// 
-/// Keys should be used by [SliverGlueList#builder] and [SliverGlueGrid#builder].
-abstract class GlueKeyedData {
-  String getKey();
-}
+typedef Widget ScrollGlueWidgetBuilder<T>(BuildContext context, T entry, int i, bool first, bool last);
 
-typedef Widget ScrollGlueWidgetBuilder<T extends GlueKeyedData>(BuildContext context, T entry, int i, bool first, bool last);
-
-typedef Widget ScrollGlueDismissibleBuilder<T extends GlueKeyedData>(BuildContext context, Widget widget, T entry, VoidCallback onDismissed);
-typedef Widget ScrollGlueDividerBuilder<T extends GlueKeyedData>(BuildContext context, Widget widget, T entry);
+typedef Widget ScrollGlueDismissibleBuilder<T>(BuildContext context, Widget widget, T entry, VoidCallback onDismissed);
+typedef Widget ScrollGlueDividerBuilder<T>(BuildContext context, Widget widget, T entry);
 
 Widget _wrapPadding(BuildContext context, EdgeInsets padding, Widget sliver) {
   if (padding == null) {
@@ -30,17 +23,17 @@ Widget _wrapPadding(BuildContext context, EdgeInsets padding, Widget sliver) {
   );
 }
 
-Widget _defaultDismissibleBuilder(BuildContext context, Widget widget, GlueKeyedData entry, VoidCallback onDismissed) {
+Widget _defaultDismissibleBuilder(BuildContext context, Widget widget, entry, VoidCallback onDismissed) {
   return Dismissible(
-    key: ValueKey("${entry.getKey()}_dismissible"),
+    key: ValueKey("${entry.toString()}_dismissible"),
     child: widget,
     onDismissed: (_) => onDismissed(),
   );
 }
 
-Widget _defaultDividerBuilder(BuildContext context, Widget widget, GlueKeyedData entry) {
+Widget _defaultDividerBuilder(BuildContext context, Widget widget, entry) {
   return DecoratedBox(
-    key: ValueKey("${entry.getKey()}_divider"),
+    key: ValueKey("${entry.toString()}_divider"),
     child: widget,
     position: DecorationPosition.foreground,
     decoration: BoxDecoration(

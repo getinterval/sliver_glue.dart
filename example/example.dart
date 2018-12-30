@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sliver_glue/sliver_glue.dart';
 
-class TextData with GlueKeyedData {
-  final String text;
-
-  TextData(this.text);
-
-  String getKey() => text;
-}
-
-final List<TextData> text = <TextData>[
-  TextData('A'),
-  TextData('B')
+final List<String> text = <String>[
+  'A',
+  'B'
 ];
 
 class MyApp extends StatelessWidget {
-  Widget _itemBuilder(BuildContext context, TextData data, _, __, ___) =>
-    Text(data.text, key: Key(data.getKey()));
+  Widget _itemBuilder(BuildContext context, String data, _, __, ___) =>
+    Text(data, key: Key(data.toString()));
  
   @override
   Widget build(BuildContext context) {

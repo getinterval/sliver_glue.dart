@@ -19,7 +19,7 @@ const _kCrossAxisCount = 2;
 /// Optionally, [SliverGlueGrid] can...
 /// - Wrap the entire list in [padding].
 /// - Make items dismissible via [dismissible] and [dismissibleBuilder]. If [dismissible] is true, [onDismissed] **must** be specified.
-class SliverGlueGrid<T extends GlueKeyedData> extends StatelessWidget {
+class SliverGlueGrid<T> extends StatelessWidget {
   final List<T> data;
   final ScrollGlueWidgetBuilder<T> builder;
 

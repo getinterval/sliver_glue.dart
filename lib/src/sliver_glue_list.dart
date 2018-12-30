@@ -12,7 +12,7 @@ part of sliver_glue;
 /// - Show a [header] [Widget] before the content.
 /// - Make items dismissible via [dismissible] and [dismissibleBuilder]. If [dismissible] is true, [onDismissed] **must** be specified.
 /// - Provide bottom-border dividers via [divided] and [dividerBuilder].
-class SliverGlueList<T extends GlueKeyedData> extends StatelessWidget {
+class SliverGlueList<T> extends StatelessWidget {
   final List<T> data;
   final ScrollGlueWidgetBuilder<T> builder;
 
