@@ -1,6 +1,6 @@
 name: sliver_glue
 description: Helpers for easily mixing content in a Flutter CustomScrollView, simple as ListView & GridView.
-version: 1.0.0
+version: 1.1.0
 author: Michael Bullington <michael@bullington.xyz>
 homepage: https://github.com/mbullington/sliver_glue.dart
 environment:

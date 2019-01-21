@@ -25,7 +25,7 @@ Widget _wrapPadding(BuildContext context, EdgeInsets padding, Widget sliver) {
 
 Widget _defaultDismissibleBuilder(BuildContext context, Widget widget, entry, VoidCallback onDismissed) {
   return Dismissible(
-    key: ValueKey("${entry.toString()}_dismissible"),
+    key: ValueKey("${entry.hashCode.toString()}_dismissible"),
     child: widget,
     onDismissed: (_) => onDismissed(),
   );
@@ -33,7 +33,7 @@ Widget _defaultDismissibleBuilder(BuildContext context, Widget widget, entry, Vo
 
 Widget _defaultDividerBuilder(BuildContext context, Widget widget, entry) {
   return DecoratedBox(
-    key: ValueKey("${entry.toString()}_divider"),
+    key: ValueKey("${entry.hashCode.toString()}_divider"),
     child: widget,
     position: DecorationPosition.foreground,
     decoration: BoxDecoration(
