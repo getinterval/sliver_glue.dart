@@ -44,12 +44,12 @@ class MyApp extends StatelessWidget {
           data: text,
           header: Text('Our List Header'),
           builder: _itemBuilder,
-          divided: true,
+          divider: GlueDivider(enabled: true),
         ),
         SliverGlueGrid(
           data: text,
           builder: _itemBuilder,
-          dismissible: true
+          dismiss: GlueDismiss(enabled: true)
         )
       ],
     );
@@ -58,3 +58,9 @@ class MyApp extends StatelessWidget {
 
 void main() => runApp(MyApp());
 ```
+
+## MobX Integration
+
+`sliver_glue` also provides widgets for MobX's `ObservableList`
+in the form of `SliverGlueObservableList`. To use this widget,
+import `package:sliver_glue/mobx.dart`.
