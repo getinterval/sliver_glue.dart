@@ -12,7 +12,7 @@ New additions:
 `SliverGlueObservableList` widget. Due to Dart tree shaking
 this will not pull MobX into your project if you don't
 explicitly import the `mobx.dart` file.
-* Added `footer` option to `SliverGlueObservableList`.
+* Added `footer` and `reversed` options to `SliverGlueObservableList`.
 * Added support for `trailingDivider` to `GlueDivider`.
 
 ## 1.1.0
