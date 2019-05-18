@@ -10,8 +10,8 @@ part of sliver_glue;
 /// Optionally, [SliverGlueList] can...
 /// - Wrap the entire list in [padding].
 /// - Show a [header] [Widget] before the content.
-/// - Make items dismissible via [dismissible] and [dismissibleBuilder]. If [dismissible] is true, [onDismissed] **must** be specified.
-/// - Provide bottom-border dividers via [divided] and [dividerBuilder].
+/// - Make items dismissible via [dismiss].
+/// - Provide bottom-border dividers via [divided].
 class SliverGlueList<T> extends StatelessWidget {
   final List<T> data;
   final ScrollGlueWidgetBuilder<T> builder;
@@ -19,13 +19,22 @@ class SliverGlueList<T> extends StatelessWidget {
   final EdgeInsets padding;
 
   final Widget header;
+  final Widget footer;
 
-  final bool dismissible;
-  final VoidCallback onDismissed;
-  final ScrollGlueDismissibleBuilder<T> dismissibleBuilder;
+  final bool reversed;
 
-  final bool divided;
-  final ScrollGlueDividerBuilder<T> dividerBuilder;
+  final GlueDismiss dismiss;
+  final GlueDivider divider;
+
+  int get extraItems {
+    int count = 0;
+
+    if (header != null) { count++; }
+
+    if (footer != null) { count++; }
+
+    return count;
+  }
 
   SliverGlueList(
       {Key key,
@@ -33,22 +42,28 @@ class SliverGlueList<T> extends StatelessWidget {
       @required this.builder,
       this.padding,
       this.header,
-      this.dismissible: false,
-      this.onDismissed,
-      this.dismissibleBuilder,
-      this.divided: false,
-      this.dividerBuilder})
+      this.footer,
+      this.reversed: false,
+      this.dismiss: const GlueDismiss(),
+      this.divider: const GlueDivider()})
       :
-      assert(!dismissible || onDismissed != null),
       super(key: key);
 
   Widget _itemBuilder(BuildContext context, int index) {
+    if (footer != null && index == data.length + extraItems - 1) {
+      return footer;
+    }
+
     if (header != null) {
       if (index == 0) {
         return header;
       }
 
       index--;
+    }
+
+    if (reversed) {
+      index = data.length - 1 - index;
     }
 
     final entry = data[index];
@@ -58,12 +73,12 @@ class SliverGlueList<T> extends StatelessWidget {
 
     Widget widget = builder(context, entry, index, first, last);
 
-    if (dismissible) {
-      widget = (dismissibleBuilder ?? _defaultDismissibleBuilder)(context, widget, entry, onDismissed);
+    if (dismiss.enabled) {
+      widget = dismiss.builder(context, widget, entry, dismiss.onDismiss);
     }
 
-    if (divided && !last) {
-      widget = (dividerBuilder ?? _defaultDividerBuilder)(context, widget, entry);
+    if (divider.enabled && (divider.trailingDivider || !last)) {
+      widget = divider.builder(context, widget, entry);
     }
 
     return widget;
@@ -71,7 +86,7 @@ class SliverGlueList<T> extends StatelessWidget {
 
   Widget build(BuildContext context) => _wrapPadding(context, padding, SliverList(
     delegate: SliverChildBuilderDelegate(_itemBuilder,
-      childCount: data.length + (header != null ? 1 : 0)
+      childCount: data.length + extraItems
     )
   ));
 }

@@ -26,12 +26,12 @@ class MyApp extends StatelessWidget {
           data: text,
           header: Text('Our List Header'),
           builder: _itemBuilder,
-          divided: true,
+          divider: GlueDivider(enabled: true),
         ),
         SliverGlueGrid(
           data: text,
           builder: _itemBuilder,
-          dismissible: true
+          dismiss: GlueDismiss(enabled: true),
         )
       ],
     );

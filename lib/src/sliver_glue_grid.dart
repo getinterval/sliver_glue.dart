@@ -18,7 +18,7 @@ const _kCrossAxisCount = 2;
 /// 
 /// Optionally, [SliverGlueGrid] can...
 /// - Wrap the entire list in [padding].
-/// - Make items dismissible via [dismissible] and [dismissibleBuilder]. If [dismissible] is true, [onDismissed] **must** be specified.
+/// - Make items dismissible via [dismiss].
 class SliverGlueGrid<T> extends StatelessWidget {
   final List<T> data;
   final ScrollGlueWidgetBuilder<T> builder;
@@ -28,9 +28,7 @@ class SliverGlueGrid<T> extends StatelessWidget {
   final num aspectRatio;
   final num crossAxisCount;
 
-  final bool dismissible;
-  final VoidCallback onDismissed;
-  final ScrollGlueDismissibleBuilder<T> dismissibleBuilder;
+  final GlueDismiss dismiss;
 
   SliverGlueGrid(
       {Key key,
@@ -40,11 +38,8 @@ class SliverGlueGrid<T> extends StatelessWidget {
       this.spacing: _kSpacing,
       this.aspectRatio: _kAspectRatio,
       this.crossAxisCount: _kCrossAxisCount,
-      this.dismissible: false,
-      this.onDismissed,
-      this.dismissibleBuilder})
+      this.dismiss: const GlueDismiss()})
       :
-      assert(!dismissible || onDismissed != null),
       super(key: key);
 
   Widget _itemBuilder(BuildContext context, int index) {
@@ -55,8 +50,8 @@ class SliverGlueGrid<T> extends StatelessWidget {
 
     Widget widget = builder(context, entry, index, first, last);
 
-    if (dismissible) {
-      widget = (dismissibleBuilder ?? _defaultDismissibleBuilder)(context, widget, entry, onDismissed);
+    if (dismiss.enabled) {
+      widget = dismiss.builder(context, widget, entry, dismiss.onDismiss);
     }
 
     return widget;
