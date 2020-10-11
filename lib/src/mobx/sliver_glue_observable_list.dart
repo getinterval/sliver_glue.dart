@@ -47,6 +47,14 @@ class _SliverGlueObservableListState<T> extends State<SliverGlueObservableList<T
   }
 
   @override
+  void didUpdateWidget(SliverGlueObservableList<T> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    removeObserver();
+    addObserver();
+  }
+
+  @override
   void dispose() {
     super.dispose();
     removeObserver();
@@ -55,7 +63,7 @@ class _SliverGlueObservableListState<T> extends State<SliverGlueObservableList<T
   _observer(ListChange<T> change) => setState(noOp);
 
   addObserver() {
-    _cancel = widget.data.observe(_observer);
+    _cancel = widget.data.observe(_observer, fireImmediately: true);
   }
 
   removeObserver() {
