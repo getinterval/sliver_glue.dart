@@ -1,4 +1,4 @@
-# sliver_glue.dart | 1.2.0
+# sliver_glue.dart | 2.0.0
 
 [![Pub](https://img.shields.io/pub/v/sliver_glue.svg)](https://pub.dartlang.org/packages/sliver_glue)
 
