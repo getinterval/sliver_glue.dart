@@ -1,6 +1,6 @@
 part of sliver_glue;
 
-typedef Widget GlueDismissBuilder<T>(BuildContext context, Widget widget, T entry, VoidCallback onDismissed);
+typedef Widget GlueDismissBuilder<T>(BuildContext context, Widget widget, T? entry, VoidCallback onDismissed);
 
 Widget _defaultDismissBuilder(BuildContext context, Widget widget, entry, VoidCallback onDismissed) {
   return Dismissible(
@@ -16,7 +16,7 @@ Widget _defaultDismissBuilder(BuildContext context, Widget widget, entry, VoidCa
 /// If [dismissible] is true, [onDismissed] **must** be specified.
 class GlueDismiss {
   final bool enabled;
-  final VoidCallback onDismiss;
+  final VoidCallback? onDismiss;
   final GlueDismissBuilder builder;
 
   const GlueDismiss({

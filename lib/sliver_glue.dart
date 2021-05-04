@@ -12,7 +12,7 @@ part "src/sliver_glue_grid.dart";
 
 typedef Widget ScrollGlueWidgetBuilder<T>(BuildContext context, T entry, int i, bool first, bool last);
 
-Widget _wrapPadding(BuildContext context, EdgeInsets padding, Widget sliver) {
+Widget _wrapPadding(BuildContext context, EdgeInsets? padding, Widget sliver) {
   if (padding == null) {
     return sliver;
   }

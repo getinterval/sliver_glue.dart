@@ -1,3 +1,7 @@
+## 2.0.0
+
+- Null safety!
+
 ## 1.3.0
 
 - Upgrade `MobX` version, fix bug.

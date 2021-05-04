@@ -8,7 +8,7 @@ class SliverGlueFixedList extends StatelessWidget {
 
   final EdgeInsets padding;
 
-  SliverGlueFixedList({Key key, @required this.widgets, this.padding: const EdgeInsets.all(0.0)}) : super(key: key);
+  SliverGlueFixedList({Key? key, required this.widgets, this.padding: const EdgeInsets.all(0.0)}) : super(key: key);
 
   Widget build(BuildContext context) {
     if (widgets.length == 1) {

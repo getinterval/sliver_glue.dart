@@ -1,6 +1,6 @@
 part of sliver_glue;
 
-typedef Widget GlueDividerBuilder<T>(BuildContext context, Widget widget, T entry);
+typedef Widget GlueDividerBuilder<T>(BuildContext context, Widget widget, T? entry);
 
 Widget _defaultDividerBuilder(BuildContext context, Widget widget, entry) {
   return DecoratedBox(

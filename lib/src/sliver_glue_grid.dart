@@ -31,9 +31,9 @@ class SliverGlueGrid<T> extends StatelessWidget {
   final GlueDismiss dismiss;
 
   SliverGlueGrid(
-      {Key key,
-      @required this.data,
-      @required this.builder,
+      {Key? key,
+      required this.data,
+      required this.builder,
       this.padding: _kPadding,
       this.spacing: _kSpacing,
       this.aspectRatio: _kAspectRatio,
@@ -51,7 +51,7 @@ class SliverGlueGrid<T> extends StatelessWidget {
     Widget widget = builder(context, entry, index, first, last);
 
     if (dismiss.enabled) {
-      widget = dismiss.builder(context, widget, entry, dismiss.onDismiss);
+      widget = dismiss.builder(context, widget, entry, dismiss.onDismiss ?? () {});
     }
 
     return widget;
@@ -59,10 +59,10 @@ class SliverGlueGrid<T> extends StatelessWidget {
 
   Widget build(BuildContext context) => _wrapPadding(context, padding, SliverGrid(
     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: crossAxisCount,
-      mainAxisSpacing: spacing,
-      crossAxisSpacing: spacing,
-      childAspectRatio: aspectRatio
+      crossAxisCount: crossAxisCount as int,
+      mainAxisSpacing: spacing as double,
+      crossAxisSpacing: spacing as double,
+      childAspectRatio: aspectRatio as double
     ),
     delegate: SliverChildBuilderDelegate(_itemBuilder, childCount: data.length),
   ));

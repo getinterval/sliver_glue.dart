@@ -11,10 +11,10 @@ class SliverGlueObservableList<T> extends StatefulWidget {
   final ObservableList<T> data;
   final ScrollGlueWidgetBuilder<T> builder;
 
-  final EdgeInsets padding;
+  final EdgeInsets? padding;
 
-  final Widget header;
-  final Widget footer;
+  final Widget? header;
+  final Widget? footer;
 
   final bool reversed;
 
@@ -22,9 +22,9 @@ class SliverGlueObservableList<T> extends StatefulWidget {
   final GlueDivider divider;
 
   SliverGlueObservableList(
-      {Key key,
-      @required this.data,
-      @required this.builder,
+      {Key? key,
+      required this.data,
+      required this.builder,
       this.padding,
       this.header,
       this.footer,
@@ -38,7 +38,7 @@ class SliverGlueObservableList<T> extends StatefulWidget {
 }
 
 class _SliverGlueObservableListState<T> extends State<SliverGlueObservableList<T>> {
-  Function _cancel;
+  Function? _cancel;
 
   @override
   void initState() {
@@ -68,7 +68,7 @@ class _SliverGlueObservableListState<T> extends State<SliverGlueObservableList<T
 
   removeObserver() {
     if (_cancel != null) {
-      _cancel();
+      _cancel!();
       _cancel = null;
     }
   }

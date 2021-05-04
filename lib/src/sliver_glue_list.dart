@@ -16,10 +16,10 @@ class SliverGlueList<T> extends StatelessWidget {
   final List<T> data;
   final ScrollGlueWidgetBuilder<T> builder;
 
-  final EdgeInsets padding;
+  final EdgeInsets? padding;
 
-  final Widget header;
-  final Widget footer;
+  final Widget? header;
+  final Widget? footer;
 
   final bool reversed;
 
@@ -37,9 +37,9 @@ class SliverGlueList<T> extends StatelessWidget {
   }
 
   SliverGlueList(
-      {Key key,
-      @required this.data,
-      @required this.builder,
+      {Key? key,
+      required this.data,
+      required this.builder,
       this.padding,
       this.header,
       this.footer,
@@ -49,7 +49,7 @@ class SliverGlueList<T> extends StatelessWidget {
       :
       super(key: key);
 
-  Widget _itemBuilder(BuildContext context, int index) {
+  Widget? _itemBuilder(BuildContext context, int index) {
     if (footer != null && index == data.length + extraItems - 1) {
       return footer;
     }
@@ -74,7 +74,7 @@ class SliverGlueList<T> extends StatelessWidget {
     Widget widget = builder(context, entry, index, first, last);
 
     if (dismiss.enabled) {
-      widget = dismiss.builder(context, widget, entry, dismiss.onDismiss);
+      widget = dismiss.builder(context, widget, entry, dismiss.onDismiss ?? () {});
     }
 
     if (divider.enabled && (divider.trailingDivider || !last)) {
